@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GUInterface {
 
@@ -53,15 +54,25 @@ public class GUInterface {
         yearCombo.setBounds(150,110,165,20);
         myPanel.add(yearCombo);
 
-        //============END OF LABELS AND TEXT FIELDS==============
+        ArrayList studentList = new ArrayList();
 
-//        JLabel averageGradeLabel = new JLabel("Average Grade: ");
-//        averageGradeLabel.setBounds(10,140,120,25);
-//        myPanel.add(averageGradeLabel);
-//        JTextField averageGradeField = new JTextField(10);
-//        averageGradeField.setBounds(150,140,165,20);
-//        averageGradeField.setEditable(false);
-//        myPanel.add(averageGradeField);
+        JLabel success1 = new JLabel("Student added successfully!");
+        success1.setVisible(false);
+        success1.setBounds(400,100,200,20);
+        myPanel.add(success1);
+        JButton addStudent = new JButton("Add student");
+        addStudent.setBounds(30,150,100,20);
+        addStudent.setActionCommand("add");
+        myPanel.add(addStudent);
+        addStudent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("add")){
+                    success1.setVisible(true);
+                }
+            }
+        });
+
 
 
 
@@ -71,6 +82,7 @@ public class GUInterface {
         mainFrame.setContentPane(myPanel);                          // adding a panel onto mainFrame
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // window closing when click on Exit button
         mainFrame.setVisible(true);
+        mainFrame.setBackground(Color.darkGray);
 
 
     }
