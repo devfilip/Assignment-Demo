@@ -2,14 +2,14 @@ package org.launchcode;
 
 public class Student {
     private String name;
-    private String lastName;
+    private String surname;
     private StudentsMajor major;
     private int yearOfStudy;
     private double averageGrade;
 
     public Student(String name, String lastName, StudentsMajor major, int yearOfStudy, double averageGrade) {
         this.name = name;
-        this.lastName = lastName;
+        this.surname = lastName;
         this.major = major;
         this.yearOfStudy = yearOfStudy;
         this.averageGrade = averageGrade;
@@ -24,11 +24,11 @@ public class Student {
     }
 
     public String getLastName() {
-        return lastName;
+        return surname;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.surname = lastName;
     }
 
     public StudentsMajor getMajor() {
