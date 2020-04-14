@@ -1,7 +1,6 @@
 package org.launchcode;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,9 +8,10 @@ import java.util.ArrayList;
 
 public class GUInterface {
 
+
     public static void createAndShowGui() {
         JFrame mainFrame = new JFrame("First assignment");
-
+        ArrayList<String> studentList = new ArrayList<String>();
 
         JPanel myPanel = new JPanel();
 
@@ -42,6 +42,7 @@ public class GUInterface {
        majorCombo.setBounds(150,80,165,20);
        myPanel.add(majorCombo);
 
+
         JLabel yearLabel = new JLabel("Year of Study: ");
         yearLabel.setBounds(10,110,120,25);
         myPanel.add(yearLabel);
@@ -54,7 +55,9 @@ public class GUInterface {
         yearCombo.setBounds(150,110,165,20);
         myPanel.add(yearCombo);
 
-        ArrayList studentList = new ArrayList();
+
+
+
 
         JLabel success1 = new JLabel("Student added successfully!");
         success1.setVisible(false);
@@ -69,9 +72,42 @@ public class GUInterface {
             public void actionPerformed(ActionEvent e) {
                 if (e.getActionCommand().equals("add")){
                     success1.setVisible(true);
+                    String name = nameField.getText();
+                    studentList.add(name);
+                    String surname = surnameField.getText();
+                    studentList.add(surname);
+                    String selectedMajor = majorCombo.getSelectedItem().toString();
+                    studentList.add(selectedMajor);
+                    String selectedYear = yearCombo.getSelectedItem().toString();
+                    studentList.add(selectedYear);
+                }
+            }
+
+        });
+
+        JButton showList = new JButton("Show all students");
+        showList.setBounds(130,150,100,20);
+        myPanel.add(showList);
+        showList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for (String list : studentList){
+                    System.out.println(list);
                 }
             }
         });
+
+        JButton updateList = new JButton("Update student");
+        updateList.setBounds(230,150,100,20);
+        myPanel.add(updateList);
+        updateList.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
 
 
 
@@ -86,6 +122,7 @@ public class GUInterface {
 
 
     }
+
 
 }
 
