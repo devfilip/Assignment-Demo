@@ -15,43 +15,13 @@ public class Student {
         this.averageGrade = averageGrade;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public StudentsMajor getMajor() {
-        return major;
-    }
-
-    public void setMajor(StudentsMajor major) {
-        this.major = major;
-    }
-
-    public int getYearOfStudy() {
-        return yearOfStudy;
-    }
-
-    public void setYearOfStudy(int yearOfStudy) {
-        this.yearOfStudy = yearOfStudy;
-    }
-
-    public double getAverageGrade() {
-        return averageGrade;
-    }
-
-    public void setAverageGrade(double averageGrade) {
-        this.averageGrade = averageGrade;
+    @Override
+    public String toString() {
+        return "Student: " +
+                "Imie = " + name +
+                ", Nazwisko = " + surname +
+                ", Kierunek studiów = " + major +
+                ", Rok studiów = " + yearOfStudy +
+                ", Średnia ocen = " + averageGrade;
     }
 }

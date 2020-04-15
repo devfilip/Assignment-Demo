@@ -21,13 +21,15 @@ public class GUInterface {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addMenu.createAddingInterface(myPanel);
-                myPanel.repaint();
+                myPanel.revalidate();
             }
         });
 
         menu.showStudents.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JLabel listLabel = new JLabel();
+                listLabel.setBounds(30,350,800,400);
                 addMenu.showList();
             }
         });
@@ -41,8 +43,9 @@ public class GUInterface {
 
 
         mainFrame.setSize(1000,600);                    // setting window size
-        mainFrame.setContentPane(myPanel);                          // adding a panel onto mainFrame
+        mainFrame.setContentPane(myPanel);          // adding a panel onto mainFrame
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // window closing when click on Exit button
+        mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
         mainFrame.setBackground(Color.darkGray);
         myPanel.setBackground(Color.darkGray);
