@@ -10,7 +10,7 @@ public class Home {
     JButton addStudent = new JButton("Add student");
     JButton showStudents = new JButton("Display students list");
     JButton modifyStudent = new JButton("Edit student");
-    JButton deleteStudent = new JButton("Delete student");
+    JButton deleteStudent = new JButton("Delete all");
     JButton searchStudent = new JButton("Search");
 
     JLabel nameLabel = new JLabel("Name: ");
@@ -26,7 +26,7 @@ public class Home {
     JComboBox yearCombo = new JComboBox();
 
     JLabel averageLabel = new JLabel("Average grade: ");
-    JTextField averageField = new JTextField(20);
+    JTextField averageField = new JTextField("0.0",20);
     JLabel success1 = new JLabel("Student added successfully!");
     ArrayList<Student> studentList;
     public void homePanel(JPanel panel){
@@ -106,6 +106,8 @@ public class Home {
 
 
         averageField.setBounds(520, 155, 165, 20);
+        averageField.setEditable(false);
+        averageField.setBackground(Color.lightGray);
         panel.add(averageField);
 
 

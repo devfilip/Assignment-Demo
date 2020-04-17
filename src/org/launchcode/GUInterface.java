@@ -42,6 +42,8 @@ public class GUInterface extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                menu.success1.setVisible(false);
+                successDel.setVisible(false);
                 studentTextArea.setVisible(true);
                 studentTextArea.setBounds(10,250,980,320);
                 studentTextArea.setEditable(false);
@@ -66,9 +68,15 @@ public class GUInterface extends JFrame{
         menu.deleteStudent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menu.studentList.remove(0);
+                menu.studentList.removeAll(menu.studentList);
                 studentTextArea.setText("");
                 studentTextArea.setVisible(false);
+                successDel.setVisible(true);
+                successDel.setBounds(730, 80, 200, 20);
+                successDel.setFont(new Font("Helvetica", Font.ITALIC, 14));
+                successDel.setForeground(Color.yellow);
+                myPanel.add(successDel);
+                myPanel.repaint();
             }
         });
 
