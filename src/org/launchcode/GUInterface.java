@@ -14,6 +14,7 @@ public class GUInterface extends JFrame{
         JFrame mainFrame = new JFrame("First assignment");
         JPanel myPanel = new JPanel(null);
         JTextArea studentTextArea = new JTextArea();
+        JLabel successDel = new JLabel("Student deleted successfully!");
 
         Home menu = new Home();
         menu.homePanel(myPanel);
@@ -25,9 +26,13 @@ public class GUInterface extends JFrame{
 
                     StudentsMajor selectedMajor = (StudentsMajor) menu.majorCombo.getSelectedItem();
                     int selectedYear = (int) menu.yearCombo.getSelectedItem();
+                    double avg = Double.valueOf(menu.averageField.getText());
 
-                    Student studentData = new Student(menu.nameField.getText(), menu.surnameField.getText(), selectedMajor, selectedYear, 0.0);
-                    menu.studentList.add(studentData.toString());
+
+                    Student studentData = new Student(menu.nameField.getText(), menu.surnameField.getText(), selectedMajor, selectedYear,avg);
+                    menu.studentList.add(studentData);
+                    studentTextArea.setText("");
+                    studentTextArea.setVisible(false);
                 }
             }
         });
@@ -44,9 +49,9 @@ public class GUInterface extends JFrame{
                 myPanel.add(studentTextArea);
                 myPanel.repaint();
 
-                for (String stud : menu.studentList){
-                    studentTextArea.append(stud + "\n");
-                }
+                    for (Student stud : menu.studentList) {
+                            studentTextArea.append(stud + "\n");
+                    }
 
 
             }
@@ -56,7 +61,14 @@ public class GUInterface extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
+            }
+        });
+        menu.deleteStudent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                menu.studentList.remove(0);
+                studentTextArea.setText("");
+                studentTextArea.setVisible(false);
             }
         });
 

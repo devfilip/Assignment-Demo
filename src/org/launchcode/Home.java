@@ -28,8 +28,7 @@ public class Home {
     JLabel averageLabel = new JLabel("Average grade: ");
     JTextField averageField = new JTextField(20);
     JLabel success1 = new JLabel("Student added successfully!");
-    JButton submit = new JButton("Submit");
-    ArrayList<String> studentList;
+    ArrayList<Student> studentList;
     public void homePanel(JPanel panel){
         addStudent.setBounds(30,30,200,25);
         addStudent.setFont(new Font("Helvetica",Font.CENTER_BASELINE, 13));
@@ -54,7 +53,7 @@ public class Home {
         panel.add(deleteStudent);
         panel.add(searchStudent);
 
-        studentList = new ArrayList<String>();
+        studentList = new ArrayList<Student>();
 
 
         nameLabel.setBounds(400, 30, 80, 25);
