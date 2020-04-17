@@ -7,36 +7,55 @@ import java.awt.event.ActionListener;
 import java.sql.Array;
 import java.util.ArrayList;
 
-public class GUInterface {
+public class GUInterface extends JFrame{
 
 
     public static void createAndShowGui() {
-        AddingInterface addMenu = new AddingInterface();
         JFrame mainFrame = new JFrame("First assignment");
         JPanel myPanel = new JPanel(null);
+        JTextArea studentTextArea = new JTextArea();
 
         Home menu = new Home();
         menu.homePanel(myPanel);
         menu.addStudent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addMenu.createAddingInterface(myPanel);
-                myPanel.revalidate();
+                if (e.getActionCommand().equals("add")) {
+                    menu.success1.setVisible(true);
+
+                    StudentsMajor selectedMajor = (StudentsMajor) menu.majorCombo.getSelectedItem();
+                    int selectedYear = (int) menu.yearCombo.getSelectedItem();
+
+                    Student studentData = new Student(menu.nameField.getText(), menu.surnameField.getText(), selectedMajor, selectedYear, 0.0);
+                    menu.studentList.add(studentData.toString());
+                }
             }
         });
+
 
         menu.showStudents.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JLabel listLabel = new JLabel();
-                listLabel.setBounds(30,350,800,400);
-                addMenu.showList();
+
+                studentTextArea.setVisible(true);
+                studentTextArea.setBounds(10,250,980,320);
+                studentTextArea.setEditable(false);
+                studentTextArea.setBackground(Color.lightGray);
+                myPanel.add(studentTextArea);
+                myPanel.repaint();
+
+                for (String stud : menu.studentList){
+                    studentTextArea.append(stud + "\n");
+                }
+
+
             }
         });
 
         menu.modifyStudent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
 
             }
         });

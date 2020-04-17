@@ -15,10 +15,10 @@ public class Student {
         this.averageGrade = averageGrade;
     }
 
+
     @Override
     public String toString() {
-        return "Student: " +
-                "Imie = " + name +
+        return  "Imie = " + name +
                 ", Nazwisko = " + surname +
                 ", Kierunek studiów = " + major +
                 ", Rok studiów = " + yearOfStudy +
