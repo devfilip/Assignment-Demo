@@ -7,7 +7,7 @@ public enum StudentsMajor {
             return "Informatyka";
         }
     },
-    AW{
+    INTERIOR_DESIGN{
         @Override
         public String toString() {
             return "Architektura wnetrz";
