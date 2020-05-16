@@ -2,6 +2,7 @@ package org.launchcode;
 
 import javax.swing.*;
 import javax.swing.SpringLayout;
+import javax.swing.border.Border;
 import javax.tools.Tool;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -26,6 +27,8 @@ public class GUInterface{
         JButton modifyStudent = new JButton("Edit student");
         JButton deleteStudent = new JButton("Delete all");
         JButton searchStudent = new JButton("Search");
+
+        JButton submit = new JButton("Submit");
 
         JPanel butPanel = new JPanel();
         butPanel.setLayout(new BoxLayout(butPanel,BoxLayout.PAGE_AXIS));
@@ -57,20 +60,25 @@ public class GUInterface{
         String[] labels = {"Name: ", "Surname: ", "Major: ", "Year of Study: ", "Average grade: "};
 
         int numPairs = labels.length;
-
         for (int i = 0; i < numPairs; i++) {
             JLabel l = new JLabel(labels[i], JLabel.TRAILING);
             l.setForeground(Color.white);
             formPanel.add(l);
-            JTextField textField = new JTextField(20);
+            JTextField textField = new JTextField(15);
             l.setLabelFor(textField);
             formPanel.add(textField);
         }
-        layout.SpringUtilities.makeCompactGrid(formPanel,
+
+        SpringUtilities.makeCompactGrid(formPanel,
                 numPairs, 2, //rows, cols
-                6, 6,        //initX, initY
-                6, 6);       //xPad, yPad
+                3, 3,        //initX, initY
+                3, 3);       //xPad, yPad
         mainPanel.add(formPanel, BorderLayout.CENTER);
+        mainPanel.add(submit, BorderLayout.SOUTH);
+        submit.addActionListener(e -> {
+            JOptionPane.showMessageDialog(mainFrame, "Student added successfully!", "Good Job",
+                    JOptionPane.INFORMATION_MESSAGE );
+        });
 
         mainPanel.add(success1, BorderLayout.LINE_END);
         success1.setVisible(false);
