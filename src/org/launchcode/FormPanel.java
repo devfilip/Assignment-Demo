@@ -20,6 +20,7 @@ public class FormPanel extends GUInterface {
     JFrame frame = new JFrame();
     JPanel addForm = new JPanel(new GridLayout(0,2,20,10));
 
+
     public FormPanel() {
         addForm.setBackground(Color.darkGray);
         addForm.setForeground(Color.WHITE);
@@ -45,6 +46,11 @@ public class FormPanel extends GUInterface {
         apply.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame,"Student added succesfully!", "well done",
                     JOptionPane.INFORMATION_MESSAGE);
+            Student newStudent = new Student(nameField.getText(),
+                    surnameField.getText(),
+                    (StudentsMajor) majorCombo.getSelectedItem(),
+                    Integer.parseInt(yearField.getText()),
+                    Double.parseDouble(avgField.getText()));
         });
     }
 
