@@ -11,27 +11,13 @@ public class GUInterface{
 //        JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel menu = new JPanel(new FlowLayout());
         FormPanel addForm = new FormPanel();
+        StudentList table = new StudentList();
         
         JButton addStudent = new JButton("Add student");
         JButton showStudents = new JButton("Display students list");
         JButton modifyStudent = new JButton("Edit student");
         JButton deleteStudent = new JButton("Delete student");
         JButton searchStudent = new JButton("Search");
-
-        JLabel nameLabel = new JLabel("Name: ");
-        JLabel surnameLabel = new JLabel("Surname: ");
-        JLabel majorLabel = new JLabel("Major: ");
-        JLabel yearLabel = new JLabel("Year of Study: ");
-        JLabel avgLabel = new JLabel("Avg. grade: ");
-        JLabel empty = new JLabel("");
-
-        JTextField nameField = new JTextField(15);
-        JTextField surnameField = new JTextField(15);
-        JComboBox majorCombo = new JComboBox(StudentsMajor.values());
-        JTextField yearField = new JTextField(15);
-        JTextField avgField = new JTextField(15);
-
-        JButton apply = new JButton("Submit");
 
         Font butFont = new Font("Helvetica",Font.CENTER_BASELINE, 13);
 
@@ -52,14 +38,15 @@ public class GUInterface{
 
         mainFrame.add(menu, BorderLayout.NORTH);
         addStudent.addActionListener(e -> {
-
             mainFrame.add(addForm.getAddForm(),BorderLayout.CENTER);
             mainFrame.revalidate();
         });
 
-        apply.addActionListener(e -> {
-
+        showStudents.addActionListener(e -> {
+            mainFrame.add(table.getPanel(), BorderLayout.SOUTH);
+            mainFrame.revalidate();
         });
+
 
         Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();      // setting window size
         mainFrame.setSize(screenDim.width / 2,screenDim.height / 2);

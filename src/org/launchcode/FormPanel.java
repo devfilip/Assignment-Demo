@@ -17,7 +17,7 @@ public class FormPanel extends GUInterface {
     JTextField yearField = new JTextField(15);
     JTextField avgField = new JTextField(15);
     JButton apply = new JButton("Submit");
-
+    JFrame frame = new JFrame();
     JPanel addForm = new JPanel(new GridLayout(0,2,20,10));
 
     public FormPanel() {
@@ -42,6 +42,10 @@ public class FormPanel extends GUInterface {
         addForm.add(empty);
         addForm.add(apply);
 
+        apply.addActionListener(e -> {
+            JOptionPane.showMessageDialog(frame,"Student added succesfully!", "well done",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
     }
 
     public JPanel getAddForm() {
