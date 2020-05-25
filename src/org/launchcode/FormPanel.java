@@ -12,6 +12,7 @@ public class FormPanel extends GUInterface {
     JLabel avgLabel = new JLabel("Avg. grade: ");
     JLabel empty = new JLabel("");
 
+
     JTextField nameField = new JTextField(15);
     JTextField surnameField = new JTextField(15);
     JComboBox majorCombo = new JComboBox(StudentsMajor.values());
@@ -26,6 +27,7 @@ public class FormPanel extends GUInterface {
     public FormPanel(DefaultTableModel model) {
         this.model = model;
 
+        nameLabel.setForeground(Color.white);
         addForm.setBackground(Color.darkGray);
         addForm.setForeground(Color.WHITE);
 

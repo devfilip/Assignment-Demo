@@ -35,6 +35,7 @@ public class StudentList extends GUInterface {
         JScrollPane pane = new JScrollPane(table);
         panel.add(pane);
 
+        table.setAutoCreateRowSorter(true);
 
     }
 
