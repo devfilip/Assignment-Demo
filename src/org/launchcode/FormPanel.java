@@ -1,6 +1,7 @@
 package org.launchcode;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class FormPanel extends GUInterface {
@@ -19,9 +20,12 @@ public class FormPanel extends GUInterface {
     JButton apply = new JButton("Submit");
     JFrame frame = new JFrame();
     JPanel addForm = new JPanel(new GridLayout(0,2,20,10));
+    DefaultTableModel model;
 
 
-    public FormPanel() {
+    public FormPanel(DefaultTableModel model) {
+        this.model = model;
+
         addForm.setBackground(Color.darkGray);
         addForm.setForeground(Color.WHITE);
 
@@ -43,16 +47,27 @@ public class FormPanel extends GUInterface {
         addForm.add(empty);
         addForm.add(apply);
 
+
         apply.addActionListener(e -> {
             JOptionPane.showMessageDialog(frame,"Student added succesfully!", "well done",
                     JOptionPane.INFORMATION_MESSAGE);
-            Student newStudent = new Student(nameField.getText(),
-                    surnameField.getText(),
-                    (StudentsMajor) majorCombo.getSelectedItem(),
-                    Integer.parseInt(yearField.getText()),
-                    Double.parseDouble(avgField.getText()));
+
+            createStudent();
         });
     }
+
+    public void createStudent(){
+        Object[] row = new Object[5];
+
+        row[0] = nameField.getText();
+        row[1] = surnameField.getText();
+        row[2] = majorCombo.getSelectedItem();
+        row[3] =  yearField.getText();
+        row[4] = avgField.getText();
+
+        model.addRow(row);
+    }
+
 
     public JPanel getAddForm() {
         return addForm;

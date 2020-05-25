@@ -1,24 +1,29 @@
 package org.launchcode;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class StudentList extends GUInterface {
 
-    JTable table;
     JPanel panel = new JPanel();
+    DefaultTableModel model = new DefaultTableModel();
+    JTable table = new JTable(model);
+
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
     public StudentList() {
         panel.setLayout(new FlowLayout());
-        String[] header = {"Name", "Surname", "Major", "Year of Study", "Avg grade"};
 
-        Object[][] data = {
-                {"Filip", "Kiraga", "IT", "", ""},
-                {"Marry", "Black", "Female", "", ""},
-        };
+        Object[] columns = {"Name", "Surname","Major","Year of study", "Avg. Grade"};
 
-        table = new JTable(data, header);
+        model.setColumnIdentifiers(columns);
         table.setPreferredScrollableViewportSize(new Dimension(500,50));
         table.setFillsViewportHeight(true);
+        table.setEnabled(false);
+
 
         JScrollPane pane = new JScrollPane(table);
         panel.add(pane);

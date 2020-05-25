@@ -8,11 +8,12 @@ public class GUInterface{
 
     public static void createAndShowGui() {
         JFrame mainFrame = new JFrame("First assignment");
-//        JPanel mainPanel = new JPanel(new BorderLayout());
+
         JPanel menu = new JPanel(new FlowLayout());
-        FormPanel addForm = new FormPanel();
+
         StudentList table = new StudentList();
-        
+        FormPanel addForm = new FormPanel(table.getModel());
+
         JButton addStudent = new JButton("Add student");
         JButton showStudents = new JButton("Display students list");
         JButton modifyStudent = new JButton("Edit student");
