@@ -48,6 +48,10 @@ public class GUInterface{
             mainFrame.revalidate();
         });
 
+        deleteStudent.addActionListener(e -> {
+            table.getRow();
+        });
+
 
         Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();      // setting window size
         mainFrame.setSize(screenDim.width / 2,screenDim.height / 2);

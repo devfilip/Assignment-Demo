@@ -14,6 +14,14 @@ public class StudentList extends GUInterface {
         return model;
     }
 
+    public void getRow() {
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) {
+            int modelIndex = table.convertRowIndexToModel(selectedRow);
+            model.removeRow(modelIndex);
+        }
+    }
+
     public StudentList() {
         panel.setLayout(new FlowLayout());
 
@@ -22,7 +30,6 @@ public class StudentList extends GUInterface {
         model.setColumnIdentifiers(columns);
         table.setPreferredScrollableViewportSize(new Dimension(500,50));
         table.setFillsViewportHeight(true);
-        table.setEnabled(false);
 
 
         JScrollPane pane = new JScrollPane(table);

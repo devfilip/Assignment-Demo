@@ -68,7 +68,6 @@ public class FormPanel extends GUInterface {
         model.addRow(row);
     }
 
-
     public JPanel getAddForm() {
         return addForm;
     }
