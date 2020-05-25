@@ -17,7 +17,7 @@ public class GUInterface{
         JButton addStudent = new JButton("Add student");
         JButton showStudents = new JButton("Display students list");
         JButton modifyStudent = new JButton("Edit student");
-        JButton deleteStudent = new JButton("Delete student");
+        JButton deleteStudent = new JButton("Delete selected student");
         JButton searchStudent = new JButton("Search");
 
         Font butFont = new Font("Helvetica",Font.CENTER_BASELINE, 13);
@@ -50,6 +50,8 @@ public class GUInterface{
 
         deleteStudent.addActionListener(e -> {
             table.getRow();
+            JOptionPane.showMessageDialog(mainFrame,"Student deleted succesfully!", "well done",
+                    JOptionPane.INFORMATION_MESSAGE);
         });
 
 

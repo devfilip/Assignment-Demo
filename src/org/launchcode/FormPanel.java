@@ -49,10 +49,15 @@ public class FormPanel extends GUInterface {
 
 
         apply.addActionListener(e -> {
+            createStudent();
+            nameField.setText("");
+            surnameField.setText("");
+            yearField.setText("");
+            avgField.setText("");
             JOptionPane.showMessageDialog(frame,"Student added succesfully!", "well done",
                     JOptionPane.INFORMATION_MESSAGE);
 
-            createStudent();
+
         });
     }
 
