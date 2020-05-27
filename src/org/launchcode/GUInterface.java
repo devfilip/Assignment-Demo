@@ -1,7 +1,10 @@
 package org.launchcode;
 
 import javax.swing.*;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GUInterface{
 
@@ -41,6 +44,7 @@ public class GUInterface{
         addStudent.addActionListener(e -> {
             mainFrame.add(addForm.getAddForm(),BorderLayout.CENTER);
             mainFrame.revalidate();
+
         });
 
         showStudents.addActionListener(e -> {
@@ -54,18 +58,46 @@ public class GUInterface{
                     JOptionPane.INFORMATION_MESSAGE);
         });
 
+        searchStudent.addActionListener(e -> {
+            JFrame frame = new JFrame();
+            JPanel search = new JPanel(new FlowLayout());
+            JTextField searchBar = new JTextField(20);
+
+            search.add(searchBar);
+            search.add(table.getPanel());
+
+            searchBar.addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    String text = searchBar.getText().toUpperCase();
+
+                    table.filter(text);
+                }
+            });
+
+            TableRowSorter sorter = new TableRowSorter(table.model);
+            sorter.setRowFilter(RowFilter.regexFilter(searchBar.getText()));
+            table.table.setRowSorter(sorter);
+
+            frame.setContentPane(search);
+            Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();      // setting window size
+            frame.setSize(screenDim.width / 2,screenDim.height / 2);
+            frame.setLocation(screenDim.width / 3, screenDim.height / 3);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   // window closing when click on Exit button
+            frame.setVisible(true);
+        });
+
 
         Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();      // setting window size
         mainFrame.setSize(screenDim.width / 2,screenDim.height / 2);
         mainFrame.setLocation(screenDim.width / 4, screenDim.height / 4);
-//        mainFrame.setContentPane(mainPanel);          // adding a panel onto mainFrame
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // window closing when click on Exit button
         mainFrame.setVisible(true);
         mainFrame.setBackground(Color.darkGray);
-//        mainPanel.setBackground(Color.darkGray);
 
 
     }
+
 
 
 }

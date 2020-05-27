@@ -3,6 +3,9 @@ package org.launchcode;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 public class FormPanel extends GUInterface {
     JLabel nameLabel = new JLabel("Name: ");
@@ -23,13 +26,16 @@ public class FormPanel extends GUInterface {
     JPanel addForm = new JPanel(new GridLayout(0,2,20,10));
     DefaultTableModel model;
 
-
     public FormPanel(DefaultTableModel model) {
         this.model = model;
 
         nameLabel.setForeground(Color.white);
+        surnameLabel.setForeground(Color.white);
+        majorLabel.setForeground(Color.white);
+        yearLabel.setForeground(Color.white);
+        avgLabel.setForeground(Color.white);
+
         addForm.setBackground(Color.darkGray);
-        addForm.setForeground(Color.WHITE);
 
         addForm.add(nameLabel);
         addForm.add(nameField);
@@ -59,6 +65,32 @@ public class FormPanel extends GUInterface {
             JOptionPane.showMessageDialog(frame,"Student added succesfully!", "well done",
                     JOptionPane.INFORMATION_MESSAGE);
 
+            try{
+                File file = new File("table.txt");
+
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+
+                FileWriter fw = new FileWriter(file.getAbsoluteFile());
+                BufferedWriter bw = new BufferedWriter(fw);
+                for (int row = 0; row <model.getRowCount(); row++) {
+                    for (int col = 0; col <model.getColumnCount();col++){
+                        bw.write(model.getValueAt(row,col)+" ");
+                    }
+
+                    bw.write("\n_________\n");
+                }
+                //close BufferedWriter
+                bw.close();
+                //close FileWriter
+                fw.close();
+                JOptionPane.showMessageDialog(null, "Data Exported");
+
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+
 
         });
     }
@@ -66,11 +98,11 @@ public class FormPanel extends GUInterface {
     public void createStudent(){
         Object[] row = new Object[5];
 
-        row[0] = nameField.getText();
-        row[1] = surnameField.getText();
+        row[0] = nameField.getText().toUpperCase();
+        row[1] = surnameField.getText().toUpperCase();
         row[2] = majorCombo.getSelectedItem();
-        row[3] =  yearField.getText();
-        row[4] = avgField.getText();
+        row[3] =  yearField.getText().toUpperCase();
+        row[4] = avgField.getText().toUpperCase();
 
         model.addRow(row);
     }
