@@ -59,7 +59,7 @@ public class GUInterface{
         });
 
         searchStudent.addActionListener(e -> {
-            JFrame frame = new JFrame();
+            JFrame frame = new JFrame("Search student");
             JPanel search = new JPanel(new FlowLayout());
             JTextField searchBar = new JTextField(20);
 
