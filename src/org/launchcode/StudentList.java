@@ -3,6 +3,9 @@ package org.launchcode;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JTable;
 import javax.swing.table.TableRowSorter;
 
@@ -43,11 +46,11 @@ public class StudentList extends GUInterface {
     }
 
     public void delRow() {          //metoda, sluzaca do usuwania zaznaczonego wiersza
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow != -1) {
-            int modelIndex = table.convertRowIndexToModel(selectedRow);
-            model.removeRow(modelIndex);
-        }
+
+//        if (selectedRow != -1) {
+//            int modelIndex = table.convertRowIndexToModel(selectedRow);
+//            model.removeRow(modelIndex);
+//        }
     }
 
     public void updateRow(){                //metoda, sluzaca do modyfikowania danych studenta w wierszu
@@ -75,5 +78,24 @@ public class StudentList extends GUInterface {
         model.setValueAt(newMajor.toUpperCase(),selectedRow,2);
         model.setValueAt(newYear.toUpperCase(),selectedRow,3);
         model.setValueAt(newAvg.toUpperCase(),selectedRow,4);
+    }
+
+    //metoda odczytujaca dane tabeli z pliku tekstowego
+    public void readFile(){
+        String line;
+        BufferedReader reader;
+        try{
+            reader = new BufferedReader(new FileReader("table.txt"));
+            while((line = reader.readLine()) != null)
+            {
+                model.addRow(line.split(" ; "));
+            }
+            reader.close();
+        }
+        catch(IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error");
+            ex.printStackTrace();
+
+        }
     }
 }

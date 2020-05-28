@@ -99,32 +99,7 @@ public class FormPanel extends GUInterface {
                         JOptionPane.INFORMATION_MESSAGE);
 
                 //zapis do pliku tekstowego
-                try {
-                    File file = new File("table.txt");
-
-                    if (!file.exists()) {
-                        file.createNewFile();
-                    }
-
-                    FileWriter fw = new FileWriter(file.getAbsoluteFile());
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    for (int row = 0; row < model.getRowCount(); row++) {
-                        for (int col = 0; col < model.getColumnCount(); col++) {
-                            bw.write(model.getValueAt(row, col) + " ");
-                        }
-
-                        bw.write("\n");
-                    }
-                    //close BufferedWriter
-                    bw.close();
-                    //close FileWriter
-                    fw.close();
-                    JOptionPane.showMessageDialog(null, "Data Exported");
-
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
+                saveToFile();
             }
         });
 
@@ -140,6 +115,35 @@ public class FormPanel extends GUInterface {
         row[4] = avgField.getText().toUpperCase();
 
         model.addRow(row);
+    }
+
+    //metoda zapisujaca dane studenta do pliku
+    public void saveToFile(){
+        try {
+            File file = new File("table.txt");
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (int row = 0; row < model.getRowCount(); row++) {
+                for (int col = 0; col < model.getColumnCount(); col++) {
+                    bw.write(model.getValueAt(row, col) + " ; ");
+                }
+
+                bw.write("\n");
+            }
+            //close BufferedWriter
+            bw.close();
+            //close FileWriter
+            fw.close();
+            JOptionPane.showMessageDialog(null, "Data Exported");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     public JPanel getAddForm() {

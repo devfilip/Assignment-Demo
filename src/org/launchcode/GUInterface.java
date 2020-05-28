@@ -5,6 +5,9 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class GUInterface{
 
@@ -42,13 +45,15 @@ public class GUInterface{
         menu.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
         mainFrame.add(menu, BorderLayout.NORTH);
-        addStudent.addActionListener(e -> {
+        table.readFile(); //wczytywanie danych z pliku tekstowego
+
+        addStudent.addActionListener(e -> {   //akcja na przycisku dodająca do ramki panel z formularzem dodawania studenta
             mainFrame.add(addForm.getAddForm(),BorderLayout.CENTER);
             mainFrame.revalidate();
 
         });
 
-        showStudents.addActionListener(e -> {  //akcja na przycisku dodająca do ramki panel z formularzem dodawania studenta
+        showStudents.addActionListener(e -> {   //listener wyswietlajacy liste studentów
             mainFrame.add(table.getPanel(), BorderLayout.SOUTH);
             mainFrame.revalidate();
         });
@@ -64,7 +69,7 @@ public class GUInterface{
         });
 
         deleteStudent.addActionListener(e -> {
-            if (table.table.getSelectionModel().isSelectionEmpty()){
+            if (table.table.getSelectionModel().isSelectionEmpty()){   //walidacja czy jest zaznaczony wiersz do usuniecia
                 JOptionPane.showMessageDialog(null,"Select a student you want to remove.","ERROR",JOptionPane.ERROR_MESSAGE);
             }else {
                 table.delRow();
