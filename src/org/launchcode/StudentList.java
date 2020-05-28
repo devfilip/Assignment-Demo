@@ -12,31 +12,19 @@ public class StudentList extends GUInterface {
     DefaultTableModel model = new DefaultTableModel(); //
     JTable table = new JTable(model);
 
-    public DefaultTableModel getModel() {
-        return model;
-    }
-
-    public void getRow() {
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow != -1) {
-            int modelIndex = table.convertRowIndexToModel(selectedRow);
-            model.removeRow(modelIndex);
-        }
-    }
-
     public StudentList() {
         panel.setLayout(new FlowLayout());
 
-        Object[] columns = {"Name", "Surname","Major","Year of study", "Avg. Grade"};
+        Object[] columns = {"Name", "Surname","Major","Year of study", "Avg. Grade"};     //nazwy kolumn tabeli
 
         model.setColumnIdentifiers(columns);
         table.setPreferredScrollableViewportSize(new Dimension(500,50));
-        table.setFillsViewportHeight(true);
+        table.setFillsViewportHeight(true);  //rozciaga tabele to maksymalnej wielkosci
 
         JScrollPane pane = new JScrollPane(table);
         panel.add(pane);
 
-//        table.setAutoCreateRowSorter(true);
+
 
 
     }
@@ -44,11 +32,47 @@ public class StudentList extends GUInterface {
         return panel;
     }
 
-    public void filter (String query){
+    public void filter (String query){                  //metoda, ktora sortuje z pola tekstowego
         TableRowSorter tr = new TableRowSorter(model);
         table.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(query));
-
     }
 
+    public DefaultTableModel getModel() {
+        return model;
+    }
+
+    public void delRow() {          //metoda, sluzaca do usuwania zaznaczonego wiersza
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow != -1) {
+            int modelIndex = table.convertRowIndexToModel(selectedRow);
+            model.removeRow(modelIndex);
+        }
+    }
+
+    public void updateRow(){                //metoda, sluzaca do modyfikowania danych studenta w wierszu
+        int selectedRow = table.getSelectedRow();
+
+        //pobieranie wartosci z komorek w wierszu
+        String name = model.getValueAt(selectedRow, 0).toString();
+        String surname = model.getValueAt(selectedRow, 1).toString();
+        String major = model.getValueAt(selectedRow, 2).toString();
+        String year = model.getValueAt(selectedRow, 3).toString();
+        String avg = model.getValueAt(selectedRow, 4).toString();
+
+            //modyfikowanie kolejno komórek w wierszu
+        String newName = JOptionPane.showInputDialog(null,"Enter Name",name);
+        String newSurname = JOptionPane.showInputDialog(null,"Enter Surname",surname);
+        String newMajor = JOptionPane.showInputDialog(null,"Enter Major",major);
+        String newYear = JOptionPane.showInputDialog(null,"Enter Year of Study",year);
+        String newAvg = JOptionPane.showInputDialog(null,"Enter Average grade",avg);
+
+
+        //ustawianie wartosci komorek w wierszu
+        model.setValueAt(newName.toUpperCase(),selectedRow,0);
+        model.setValueAt(newSurname.toUpperCase(),selectedRow,1);
+        model.setValueAt(newMajor,selectedRow,2);
+        model.setValueAt(newYear.toUpperCase(),selectedRow,3);
+        model.setValueAt(newAvg.toUpperCase(),selectedRow,4);
+    }
 }

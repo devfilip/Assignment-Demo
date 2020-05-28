@@ -20,7 +20,7 @@ public class GUInterface{
         JButton addStudent = new JButton("Add student");
         JButton showStudents = new JButton("Display students list");
         JButton modifyStudent = new JButton("Edit student");
-        JButton deleteStudent = new JButton("Delete selected student");
+        JButton deleteStudent = new JButton("Delete student");
         JButton searchStudent = new JButton("Search");
 
         Font butFont = new Font("Helvetica",Font.CENTER_BASELINE, 13);
@@ -52,8 +52,12 @@ public class GUInterface{
             mainFrame.revalidate();
         });
 
+        modifyStudent.addActionListener(e -> {
+            table.updateRow();
+        });
+
         deleteStudent.addActionListener(e -> {
-            table.getRow();
+            table.delRow();
             JOptionPane.showMessageDialog(mainFrame,"Student deleted succesfully!", "well done",
                     JOptionPane.INFORMATION_MESSAGE);
         });
@@ -86,6 +90,7 @@ public class GUInterface{
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   // window closing when click on Exit button
             frame.setVisible(true);
         });
+
 
 
         Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();      // setting window size
