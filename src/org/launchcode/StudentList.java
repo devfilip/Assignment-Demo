@@ -46,7 +46,8 @@ public class StudentList extends GUInterface {
     }
 
     public void delRow() {          //metoda, sluzaca do usuwania zaznaczonego wiersza
-
+        int selectedRow = table.getSelectedRow();
+           if (selectedRow == -1) { return; }
         if (selectedRow != -1) {
             int modelIndex = table.convertRowIndexToModel(selectedRow);
             model.removeRow(modelIndex);
