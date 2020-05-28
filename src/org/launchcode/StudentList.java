@@ -19,7 +19,7 @@ public class StudentList extends GUInterface {
 
         model.setColumnIdentifiers(columns);
         table.setPreferredScrollableViewportSize(new Dimension(500,50));
-        table.setFillsViewportHeight(true);  //rozciaga tabele to maksymalnej wielkosci
+        table.setFillsViewportHeight(true);  //rozciaga tabele do maksymalnej wielkosci
 
         JScrollPane pane = new JScrollPane(table);
         panel.add(pane);
@@ -68,10 +68,11 @@ public class StudentList extends GUInterface {
         String newAvg = JOptionPane.showInputDialog(null,"Enter Average grade",avg);
 
 
+
         //ustawianie wartosci komorek w wierszu
         model.setValueAt(newName.toUpperCase(),selectedRow,0);
         model.setValueAt(newSurname.toUpperCase(),selectedRow,1);
-        model.setValueAt(newMajor,selectedRow,2);
+        model.setValueAt(newMajor.toUpperCase(),selectedRow,2);
         model.setValueAt(newYear.toUpperCase(),selectedRow,3);
         model.setValueAt(newAvg.toUpperCase(),selectedRow,4);
     }

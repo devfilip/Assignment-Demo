@@ -14,9 +14,10 @@ public class GUInterface{
 
         JPanel menu = new JPanel(new FlowLayout());
 
-        StudentList table = new StudentList();
+        StudentList table = new StudentList(); //obiekt listy studentow
         FormPanel addForm = new FormPanel(table.getModel());
 
+        //dodawanie przyciskow do panelu menu
         JButton addStudent = new JButton("Add student");
         JButton showStudents = new JButton("Display students list");
         JButton modifyStudent = new JButton("Edit student");
@@ -47,25 +48,36 @@ public class GUInterface{
 
         });
 
-        showStudents.addActionListener(e -> {
+        showStudents.addActionListener(e -> {  //akcja na przycisku dodająca do ramki panel z formularzem dodawania studenta
             mainFrame.add(table.getPanel(), BorderLayout.SOUTH);
             mainFrame.revalidate();
         });
 
         modifyStudent.addActionListener(e -> {
-            table.updateRow();
+            if (table.getModel().getRowCount() == 0){   //walidacja czy lista studentow jest pusta
+                JOptionPane.showMessageDialog(null,"Student list is empty.", "ERROR",JOptionPane.ERROR_MESSAGE);
+            }else if (table.table.getSelectionModel().isSelectionEmpty() ){  //walidacja czy jest zaznaczony jakis wiersz w tabeli
+                JOptionPane.showMessageDialog(null,"Select a student you want to edit.","ERROR",JOptionPane.ERROR_MESSAGE);
+            } else {
+                table.updateRow();
+            }
         });
 
         deleteStudent.addActionListener(e -> {
-            table.delRow();
-            JOptionPane.showMessageDialog(mainFrame,"Student deleted succesfully!", "well done",
-                    JOptionPane.INFORMATION_MESSAGE);
+            if (table.table.getSelectionModel().isSelectionEmpty()){
+                JOptionPane.showMessageDialog(null,"Select a student you want to remove.","ERROR",JOptionPane.ERROR_MESSAGE);
+            }else {
+                table.delRow();
+                JOptionPane.showMessageDialog(mainFrame, "Student deleted succesfully!", "well done",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
         });
 
         searchStudent.addActionListener(e -> {
             JFrame frame = new JFrame("Search student");
             JPanel search = new JPanel(new FlowLayout());
             JTextField searchBar = new JTextField(20);
+
 
             search.add(searchBar);
             search.add(table.getPanel());
@@ -84,7 +96,7 @@ public class GUInterface{
             table.table.setRowSorter(sorter);
 
             frame.setContentPane(search);
-            Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();      // setting window size
+            Dimension screenDim = Toolkit.getDefaultToolkit().getScreenSize();
             frame.setSize(screenDim.width / 2,screenDim.height / 2);
             frame.setLocation(screenDim.width / 3, screenDim.height / 3);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   // window closing when click on Exit button
