@@ -47,10 +47,10 @@ public class StudentList extends GUInterface {
 
     public void delRow() {          //metoda, sluzaca do usuwania zaznaczonego wiersza
 
-//        if (selectedRow != -1) {
-//            int modelIndex = table.convertRowIndexToModel(selectedRow);
-//            model.removeRow(modelIndex);
-//        }
+        if (selectedRow != -1) {
+            int modelIndex = table.convertRowIndexToModel(selectedRow);
+            model.removeRow(modelIndex);
+        }
     }
 
     public void updateRow(){                //metoda, sluzaca do modyfikowania danych studenta w wierszu
